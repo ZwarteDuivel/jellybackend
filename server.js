@@ -21,6 +21,8 @@ app.use(cors({
   credentials: true, // Allow credentials (e.g., cookies)
 }));
 
+app.options('*', cors());
+
 app.post('/api/auth/login', (req, res) => {
   // Your login logic
 
