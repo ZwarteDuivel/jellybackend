@@ -21,7 +21,7 @@ app.use(express.json());
 app.use(cookieParser());
 
 app.use(cors({
-  origin: 'https://jelly-seller.vercel.app/', // Allow requests from this origin
+  origin: 'https://jelly-seller.vercel.app/login', // Allow requests from this origin
   credentials: true, // Allow credentials (e.g., cookies)
 }));
 
