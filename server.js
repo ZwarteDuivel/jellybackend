@@ -25,12 +25,6 @@ app.use(cors({
   credentials: true, // Allow credentials (e.g., cookies)
 }));
 
-app.use(function(req, res, next) {
-  res.header("Access-Control-Allow-Origin", "*");
-  res.header("Access-Control-Allow-Headers", "X-Requested-With");
-  next();
-});
-
 // Routes
 app.use('/api/auth', authRoutes);
 app.use('/api/data', dataRoutes); // Use data routes
