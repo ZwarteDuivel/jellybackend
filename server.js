@@ -19,7 +19,11 @@ mongoose.connect('mongodb+srv://firebrowserdevs:DbBqcROsPcek45uY@jellyagree.lfnz
 // Middleware
 app.use(express.json());
 app.use(cookieParser());
-app.use(cors());
+
+app.use(cors({
+  origin: 'https://jelly-seller.vercel.app/', // Allow requests from this origin
+  credentials: true, // Allow credentials (e.g., cookies)
+}));
 
 app.use(function(req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
