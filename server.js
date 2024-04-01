@@ -37,7 +37,7 @@ const allowCors = fn => async (req, res) => {
   return await fn(req, res)
 }
 
-app.use(allowCors);
+module.exports = allowCors(handler)
 // Routes
 app.use('/api/auth', authRoutes);
 app.use('/api/data', dataRoutes); // Use data routes
