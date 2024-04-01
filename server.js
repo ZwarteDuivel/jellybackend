@@ -16,6 +16,24 @@ mongoose.connect('mongodb+srv://firebrowserdevs:DbBqcROsPcek45uY@jellyagree.lfnz
   .then(() => console.log('MongoDB connected'))
   .catch(err => console.error('MongoDB connection error:', err));
 
+app.use(cors({
+  origin: 'https://jelly-seller.vercel.app',
+  credentials: true, // Allow credentials (e.g., cookies)
+}));
+
+app.post('/api/auth/login', (req, res) => {
+  // Your login logic
+
+  // Set CORS headers
+  res.setHeader('Access-Control-Allow-Origin', 'https://jelly-seller.vercel.app');
+  res.setHeader('Access-Control-Allow-Methods', 'POST');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+
+  // Send response
+  res.status(200).send('Login successful');
+});
+
+
 // Middleware
 app.use(express.json());
 app.use(cookieParser());
