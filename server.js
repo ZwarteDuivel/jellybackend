@@ -27,7 +27,7 @@ app.post('/api/auth/login', (req, res) => {
   // Your login logic
 
   // Set CORS headers
-  res.setHeader('Access-Control-Allow-Origin', 'https://jelly-seller.vercel.app');
+  res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Access-Control-Allow-Methods', 'POST');
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
 
