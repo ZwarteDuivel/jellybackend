@@ -20,11 +20,24 @@ mongoose.connect('mongodb+srv://firebrowserdevs:DbBqcROsPcek45uY@jellyagree.lfnz
 app.use(express.json());
 app.use(cookieParser());
 
-app.use(cors({
-  origin: 'https://jelly-seller.vercel.app/login', // Allow requests from this origin
-  credentials: true, // Allow credentials (e.g., cookies)
-}));
+const allowCors = fn => async (req, res) => {
+  res.setHeader('Access-Control-Allow-Credentials', true)
+  res.setHeader('Access-Control-Allow-Origin', '*')
+  // another common pattern
+  // res.setHeader('Access-Control-Allow-Origin', req.headers.origin);
+  res.setHeader('Access-Control-Allow-Methods', 'GET,OPTIONS,PATCH,DELETE,POST,PUT')
+  res.setHeader(
+    'Access-Control-Allow-Headers',
+    'X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version'
+  )
+  if (req.method === 'OPTIONS') {
+    res.status(200).end()
+    return
+  }
+  return await fn(req, res)
+}
 
+app.use(allowCors);
 // Routes
 app.use('/api/auth', authRoutes);
 app.use('/api/data', dataRoutes); // Use data routes
